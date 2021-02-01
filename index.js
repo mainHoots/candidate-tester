@@ -8,38 +8,72 @@
 
 const input = require('readline-sync');
 
-// let name = input.question("Please enter your name: ");
+let name = input.question("Please enter your name: ");
+
+console.log(`Candidate Name: ${name}`);
 
 let quizQuestionsAnswers = [
   
-  ["True or false: 5000 meters = 5 kilometers ", "True"],
-  ["(5 + 3)/2 * 10 = ? ", 40],
-  ["Given the array, [8, Orbit, Trajectory, 45], what entry is at index 2", "Trajectory"],
-  ["Who was the first American woman in space?", "Sally Ride"],
-  ["What is the new minimum crew size for the International Space Station (ISS)? ", "3"],
+  ["1) True or false: 5000 meters = 5 kilometers ", "True"],
+  ["2) (5 + 3)/2 * 10 = ? ", 40],
+  ["3) Given the array, [8, Orbit, Trajectory, 45], what entry is at index 2? ", "Trajectory"],
+  ["4) Who was the first American woman in space? ", "Sally Ride"],
+  ["5) What is the new minimum crew size for the International Space Station (ISS)? ", "3"],
 
 ];
 
-let quizQuestions = [];
+let candidateAnswers = [];
+
+let candidateLowerAnswer = [];
 
 let quizAnswers = [];
+
+let questionCount = quizQuestionsAnswers.length;
+
+let correctAnswerCount = 0;
+
+let results = [];
+
+// console.log(quizQuestionsAnswers);
 
 // console.log(quizQuestionsAnswers.length);
 
 // console.table(quizQuestionsAnswers);
 
-// for (i = 0; i < quizQuestionsAnswers.length; i++) {
-//   console.log("No mountain high enough!");
+for (i = 0; i < quizQuestionsAnswers.length; i++) {
+  
+  candidateAnswers[i] = input.question(quizQuestionsAnswers[i]);
+  candidateLowerAnswer.push(candidateAnswers[i].toLowerCase());
+  quizAnswers.push(quizQuestionsAnswers[i].join().toLowerCase());
+  if (candidateLowerAnswer[i] === quizAnswers[i]) {
+    
+    correctAnswerCount++;
+  
+  };
 
-// };
+};
 
+for (i = 0; i < quizQuestionsAnswers.length; i++) {
+  results.push(quizQuestionsAnswers[i].join());
+};
 
+let overallGrade = (correctAnswerCount) / (questionCount) * 100;
+
+console.log(`>>> Overall Grade: ${overallGrade}% (${correctAnswerCount} of ${questionCount} responses correct) <<<`)
+
+if (overallGrade >= 80) {
+  console.log(">>> Status: PASSED <<<");
+} else {
+  console.log(">>> Status: FAILED <<<");
+};
+
+console.log(results);
+
+// console.log(quizAnswers);
 
 // console.log(quizQuestionsAnswers[0][1])
 
-let oneQuestion = input.question(quizQuestionsAnswers[0][3]);
-
-console.log(oneQuestion);
+// console.log(oneQuestion);
 
 // let lowerCaseAnswer = quizQuestionsAnswers[0][1].toLowerCase();
 
